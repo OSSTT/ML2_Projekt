@@ -12,7 +12,7 @@ Welcome to my project for the oral exam in ML2. Please read this README file car
 
 ## How to set up the project on your device
 
-First of all, this project was developed on a Windows device and the entire code was written in Python version 3.12.1.
+First of all, this project was developed on a Windows device and the entire code was written in Python version **3.12.1**.
 You can set up the project as we did in the MDM course.
 1. Clone this project.
 2. Ensure that you are in the project folder and not in a parent directory.
