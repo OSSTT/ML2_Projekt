@@ -108,7 +108,7 @@ def handle_image():
     else:
         last_result = "unknown"
 
-    prompt = f'This image was drawn from "{last_result}". What’s the name of this image and what is happening in this image?'
+    prompt = f'This image was drawn from "{last_result}". What is the name of this image and what is happening in this image?'
 
     # Unterhaltungshistorie aus der Sitzung abrufen oder initialisieren
     conversation_history = session.get('conversation_history', [

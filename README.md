@@ -1,4 +1,4 @@
-# ML2_Project
+# ML2 Project
 
 Welcome to my project for the oral exam in ML2. Please read this README file carefully, especially the setup section.
 
@@ -15,6 +15,7 @@ Welcome to my project for the oral exam in ML2. Please read this README file car
 First of all, this project was developed on a Windows device and the entire code was written in Python version 3.12.1.
 You can set up the project as we did in the MDM course.
 1. Clone this project.
+2. Ensure that you are in the project folder and not in a parent directory.
 2. Create a new Python virtual environment. Here are the commands for Visual Studio on Windows:
     - `python -m venv .venv`
     - `.venv\Scripts\activate`
@@ -22,10 +23,11 @@ You can set up the project as we did in the MDM course.
     - `pip install -r requirements.txt`
 4. You need an OpenAI API key to run this project. Insert the API key in the file "app.py" at the placeholder "HERE THE KEY".
    If you don't have your own OpenAI API key, please contact thayath1@students.zhaw.ch.
-5. To run the project, execute the Python file "app.py":
+5. To run the project, execute the Python file "app.py" `flask run`:
     - This project uses the Flask framework.
-    - The model is already trained and saved as "trained_model.pth".
-    - Further information can be found on the frontend.
+    - The model is already trained and saved as "trained18_model.pth".
+    - Please note that the files "prediction_results.json," "results_api.json," and the mp3 file will only be created once the code is running and a request has been sent.
+    - Further information can be found on the frontend !!.
 
 ## Project goal and explanation
 
@@ -42,13 +44,11 @@ Another important question is how a blind person can read the output of the bot.
 
 To train the model with images, I scrape the data from various websites (mainly Wikipedia; you can find the code in the 'scraper' folder). Currently, I have collected paintings by Caravaggio, Da Vinci, and Picasso. The problem here is that the number of images for each artist is limited, and furthermore, some artists have painted over 100 paintings over time, while others have painted less than 50. This issue complicates the training process.
 
-The model currently has an accuracy of 0.9354 and a loss of 0.00909.
-
 ## Code Structure
 
 ### Training
 
-The code begins with training the model, which takes place in the file "training_painter.py". The model is trained using PyTorch and ResNet18. The following parameters were set for the training: Epoch: 32 and batch size: 32. Once the training is complete, a .pth file is created, and the training data is saved in JSON format "training_results.json" in the "results" folder.
+The code begins with training the model, which takes place in the file "training_ResNet18.py". The model is trained using PyTorch and ResNet18. The following parameters were set for the training: Epoch: 32 and batch size: 32. Once the training is complete, a .pth file is created, and the training data is saved in JSON format "training18_results.json" in the "results" folder. How the data is prepared and additional information can be found in the section "Interpretation and Validation"
 
 ### Prediction
 
@@ -73,9 +73,21 @@ The frontend consists of index.html, style.css, and script.js. The JavaScript fi
 
 ## Interpretation and validation
 
-As mentioned earlier, I have trained a model that can classify who painted a painting. The results of this model are then passed to the OpenAI API. The model achieves an accuracy of 0.9354 and a loss of 0.00909.
+As mentioned earlier, I have trained a model that can classify who painted a painting. The results of this model are then passed to the OpenAI API. The model achieves an accuracy of 0.94 and a loss of 0.18.
 
-Initially, the plan was to train two models: one to identify the artist and another to identify the name of the painting. This would have made it even easier for ChatGPT to narrow down the possibilities and provide accurate information. Unfortunately, training the model to identify the names of paintings was too labor-intensive and collecting the data was difficult. For example, I was able to collect 50 different artworks by Picasso. For the model to identify the names of these paintings as accurately as the model that identifies the artists, it would need to correctly identify the names of these 50 different artworks. Collecting data for these 50 paintings is very time-consuming. Additionally, there is a risk that one of the models could provide incorrect information to the OpenAI API, which could confuse ChatGPT.
+Initially, the plan was to train two models: one to identify the artist and another to identify the name of the painting. This would have made it even easier for ChatGPT to narrow down the possibilities and provide accurate information. Unfortunately, training the model to identify the names of paintings was too labor-intensive and collecting the data was difficult. For example, I was able to scrape 50 different artworks by Picasso. For the model to identify the names of these paintings as accurately as the model that identifies the artists, it would need to correctly identify the names of these 50 different artworks. Collecting data for these 50 paintings is very time-consuming. Additionally, there is a risk that one of the models could provide incorrect information to the OpenAI API, which could confuse ChatGPT.
+
+The image training was conducted using ResNet18 and ResNet50 to examine how this affects performance. ML tools and techniques such as feature engineering, optimization techniques, loss functions, learning rate scheduling, early stopping, efficient data loading mechanisms, and custom model adjustments were utilized for the training.
+
+The training results of the two models are as follows:
+
+![alt text](results/training_data.jpg)
+
+From the graph, it can be seen that ResNet18 appears to be more stable and consistent in both validation loss and validation accuracy. This suggests that ResNet18 generalizes better and is less prone to overfitting. ResNet50, on the other hand, shows higher test accuracy, indicating that it can make more precise predictions.
+
+Since the model was trained with only 150 images, which is a relatively small amount, stability is an important factor. Fluctuations can indicate overfitting, especially with smaller datasets.
+
+Due to its stability and consistency, I chose ResNet18, particularly when the amount of data is limited. However, if the highest accuracy is the primary goal and additional data or better regularization is available, ResNet50 might be the better choice due to its somewhat higher accuracy.
 
 
 ## Possible improvements

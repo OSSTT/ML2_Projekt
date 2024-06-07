@@ -11,12 +11,26 @@ from datetime import datetime
 data_dir = 'datenset/'
 class_names = sorted(os.listdir(data_dir))
 
-# Laden des trainierten Modells
-model = models.resnet18(weights=None)
+# Definition des CustomResNet-Modells
+class CustomResNet(nn.Module):
+    def __init__(self, base_model, num_classes):
+        super(CustomResNet, self).__init__()
+        self.base_model = base_model
+        self.dropout = nn.Dropout(0.5)
+        self.fc = nn.Linear(base_model.fc.in_features, num_classes)
+        self.base_model.fc = nn.Identity()
+
+    def forward(self, x):
+        x = self.base_model(x)
+        x = self.dropout(x)
+        x = self.fc(x)
+        return x
+
+# Laden des Basismodells
+base_model = models.resnet18(weights=None)
 num_classes = len(class_names)
-num_ftrs = model.fc.in_features
-model.fc = nn.Linear(num_ftrs, num_classes)
-model.load_state_dict(torch.load('trained_model.pth'))
+model = CustomResNet(base_model, num_classes)
+model.load_state_dict(torch.load('trained18_model.pth'))
 model.eval()
 
 # Vorverarbeitung der Eingabe
