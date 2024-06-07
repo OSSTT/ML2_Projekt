@@ -17,7 +17,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'supersecretkey'
 Session(app)
 
-api_key = "sk-proj-6nAaNjroNYSvmIyAJgwoT3BlbkFJaxl62nynTAQLIseJBoYG"
+api_key = "HERE THE KEY"
 openai.api_key = api_key
 
 def get_openai_response(messages):
