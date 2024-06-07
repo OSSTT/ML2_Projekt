@@ -12,22 +12,49 @@ Welcome to my project for the oral exam in ML2. Please read this README file car
 
 ## How to set up the project on your device
 
-First of all, this project was developed on a Windows device and the entire code was written in **Python version 3.12.1**.
-You can set up the project as we did in the MDM course.
+First of all, this project was developed on a **Windows device** and the entire code was written in **Python version 3.12.1**.
+You can set up the project on **Windows** just as we did in the MDM course.
+
+### For **Windows** users:
+
 1. Clone this project.
 2. Ensure that you are in the project folder and not in a parent directory.
-2. Create a new Python virtual environment. Here are the commands for Visual Studio on Windows:
+3. Create a new Python virtual environment. Here are the commands for Visual Studio on Windows:
     - `python -m venv .venv`
     - `.venv\Scripts\activate`
-3. Once you have activated the virtual environment, install the packages listed in `requirements.txt`. Use the following command:
+4. Once you have activated the virtual environment, install the packages listed in `requirements.txt`. Use the following command:
     - `pip install -r requirements.txt`
-4. You need an OpenAI API key to run this project. Insert the API key in the file "app.py" at the placeholder "HERE THE KEY".
+5. You need an OpenAI API key to run this project. Insert the API key in the file "app.py" at the placeholder "HERE THE KEY".
    If you don't have your own OpenAI API key, please contact thayath1@students.zhaw.ch.
-5. To run the project, execute the Python file "app.py" `flask run`:
+6. To run the project, execute the Python file "app.py" `flask run`:
     - This project uses the Flask framework.
     - The model is already trained and saved as "trained18_model.pth".
     - Please note that the files "prediction_results.json," "results_api.json," and the mp3 file will only be created once the code is running and a request has been sent.
     - Further information can be found on the frontend !!.
+
+### For **macOS** user:
+1. Clone this project.
+2. Ensure that you are in the project folder and not in a parent directory.
+3. Remove the following packages from the requirements.txt file:
+    - intel-openmp==2021.4.0
+    - mkl==2021.4.0
+    - tbb==2021.12.0
+    - tensorflow-intel==2.16.1
+    - tf_nightly_intel==2.17.0.dev20240523
+4. Create and activate a Python environment **through the Terminal**:
+    - `python -m venv venv`
+    - `source venv/bin/activate`
+5. Once you have activated the virtual environment, install the packages listed in `requirements.txt`. Use the following command:
+    - `pip install -r requirements.txt`
+6. **Kill the terminal** and restart VS-code.
+7. You need an OpenAI API key to run this project. Insert the API key in the file "app.py" at the placeholder "HERE THE KEY".
+   If you don't have your own OpenAI API key, please contact thayath1@students.zhaw.ch.
+8. To run the project, execute the Python file "app.py" `flask run`:
+    - This project uses the Flask framework.
+    - The model is already trained and saved as "trained18_model.pth".
+    - Please note that the files "prediction_results.json," "results_api.json," and the mp3 file will only be created once the code is running and a request has been sent.
+    - Further information can be found on the frontend !!.
+
 
 ## Project goal and explanation
 
