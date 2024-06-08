@@ -13,7 +13,7 @@ Welcome to my project for the oral exam in ML2. Please read this README file car
 ## How to set up the project on your device
 
 First of all, this project was developed on a **Windows device** and the entire code was written in **Python version 3.12.1**.
-You can set up the project on **Windows** just as we did in the MDM course.
+You can set up the project on as we did in the MDM course.
 
 ### For **Windows** users:
 
@@ -46,7 +46,7 @@ You can set up the project on **Windows** just as we did in the MDM course.
     - `source venv/bin/activate`
 5. Once you have activated the virtual environment, install the packages listed in `requirements.txt`. Use the following command:
     - `pip install -r requirements.txt`
-6. **Kill the terminal** and restart VS-code.
+6. **Kill the terminal** and restart VS-Code.
 7. You need an OpenAI API key to run this project. Insert the API key in the file "app.py" at the placeholder "HERE THE KEY".
    If you don't have your own OpenAI API key, please contact thayath1@students.zhaw.ch.
 8. To run the project, execute the Python file "app.py" `flask run`:
