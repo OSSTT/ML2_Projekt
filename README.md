@@ -63,7 +63,7 @@ This chatbot is specialized in recognizing the artist of a painting and providin
 How does the project work?
 The bot consists of two components: a self-trained model and integration with the OpenAI API. When an image is uploaded, the self-trained model first identifies the artist of the painting. Then, the outputs of the model are passed to the OpenAI API to generate further information about the painting. Now, the question arises, why don't I send the image directly to the OpenAI API for information, or why is the self-trained model needed?
 
-Although ChatGBT provides a wealth of information, I've noticed that it sometimes struggles to correctly identify less well-known paintings. Therefore, I use a specially trained model that first identifies the artist of the painting, allowing ChatGBT to better narrow down the possibilities and provide the correct information. Of course, it's possible that the self-trained model misclassifies the image, but ChatGBT usually recognizes this.
+Although ChatGPT provides a wealth of information, I've noticed that it sometimes struggles to correctly identify less well-known paintings. Therefore, I use a specially trained model that first identifies the artist of the painting, allowing ChatGPT to better narrow down the possibilities and provide the correct information. Of course, it's possible that the self-trained model misclassifies the image, but ChatGPT usually recognizes this.
 
 Another important question is how a blind person can read the output of the bot. To address this, I use the "tts-1" model from OpenAI. This model generates a realistic voice from text, allowing the output to be played as sound. Naturally, it would also be useful to enable input via voice control, as blind individuals may find it challenging to type questions or upload images. However, integrating these features would exceed the scope of this project.
 
@@ -81,7 +81,7 @@ The code begins with training the model, which takes place in the file "training
 
 The file "prediction.py" is responsible for the predictions. This file also generates a JSON file "predicted_class" with the predictions in the "results" folder. This JSON file will later be used for prompting.
 
-### OpenAI - ChatGBT
+### OpenAI - ChatGPT
 
 As mentioned in the project goal, the results of the model are passed to the OpenAI API to generate additional information about the image. The backend file "app.py" is responsible for this.
 
